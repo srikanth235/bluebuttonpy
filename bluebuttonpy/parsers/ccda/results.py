@@ -17,6 +17,12 @@ Modified on Jul 26, 2024:
 Parser for the CCDA results (labs) section
 """
 
+def strip_whitespace(text):
+    """Remove leading and trailing whitespace from a string"""
+
+    if not isinstance(text, str):
+        return text
+    return text.strip()
 
 def results(ccda):
     parse_date = documents.parse_date
@@ -45,8 +51,8 @@ def results(ccda):
             code_system = el.attr("codeSystem")
             code_system_name = el.attr("codeSystemName")
 
-            if not name:
-                name = core.strip_whitespace(observation.tag("text").val())
+            # if not name:
+            #     name = core.strip_whitespace(observation.tag("text").val())
 
             el = observation.tag("translation")
             translation_name = el.attr("displayName")
